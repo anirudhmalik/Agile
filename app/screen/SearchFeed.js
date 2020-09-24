@@ -5,31 +5,34 @@ import Screen from "../components/Screen";
 import colors from "../config/colors";
 import SearchList from "../components/SearchList";
 import handlerApi from "../api/handlerApi";
+import Error from "../components/Error";
 
 function SearchFeed({ route }) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   useEffect(() => {
     getResult(route.params.text);
   }, []);
   const getResult = async (query) => {
     setLoading(true);
-    console.log("getting data");
     const result = await handlerApi.getData("search", {
       term: query,
       country: "IN",
     });
     if (!result.ok) {
-      console.log(result.problem);
+      setError(true);
+      setLoading(false);
       return;
     }
+    setError(false);
     setData(result.data.results);
-    console.log("done");
     setLoading(false);
   };
   return (
     <Screen style={styles.container}>
       <SearchBox2 query={route.params.text} getResult={getResult}></SearchBox2>
+      <Error visible={error}></Error>
       <SearchList data={data} loading={loading}></SearchList>
     </Screen>
   );

@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginHorizontal: 18,
     flexDirection: "row",
+    marginTop: 8,
   },
   icon: {
     marginRight: 13,

@@ -21,7 +21,7 @@ function SearchList({ data, loading }) {
                 <SearchCard key={item.trackId} item={item}></SearchCard>
               ))
             ) : (
-              <AppText style={styles.text}>
+              <AppText style={styles.text2}>
                 {"Sorry, Nothing Matched your Query"}
               </AppText>
             )}
@@ -47,6 +47,13 @@ const styles = StyleSheet.create({
     color: colors.medium,
     fontSize: 18,
     fontWeight: "600",
+  },
+  text2: {
+    color: colors.medium,
+    fontSize: 18,
+    fontWeight: "600",
+    marginTop: 300,
+    alignSelf: "center",
   },
 });
 
